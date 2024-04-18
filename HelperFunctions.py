@@ -80,3 +80,46 @@ def delete(root, value):
       return rotate_left(root)
   
   return root
+
+  #*get_successor(node)*: This function returns the successor node of the given node in the AVL tree.
+
+def get_successor(node):
+  current = node
+  while current['left'] != None:
+    current = current['left']
+  return current
+
+
+  #*get_balance_factor(node)*: This function calculates the balance factor of a given node in the AVL tree.
+
+def get_balance_factor(node):
+  if node == None:
+    return 0
+  return get_height(node['left']) - get_height(node['right'])
+
+#*rotate_left(node)*: This function performs a left rotation on the given node in the AVL tree.
+
+def rotate_left(node):
+  new_root = node['right']
+  node['right'] = new_root['left']
+  new_root['left'] = node
+  node['height'] = 1 + max(get_height(node['left']), get_height(node['right']))
+  new_root['height'] = 1 + max(get_height(new_root['left']), get_height(new_root['right']))
+  return new_root
+
+#*rotate_right(node)*: This function performs a right rotation on the given node in the AVL tree.
+
+def rotate_right(node):
+  new_root = node['left']
+  node['left'] = new_root['right']
+  new_root['right'] = node
+  node['height'] = 1 + max(get_height(node['left']), get_height(node['right']))
+  new_root['height'] = 1 + max(get_height(new_root['left']), get_height(new_root['right']))
+  return new_root
+
+#*get_height(node)*: This function calculates the height of a given node in the AVL tree.
+
+def get_height(node):
+  if node == None:
+    return 0
+  return node['height']
