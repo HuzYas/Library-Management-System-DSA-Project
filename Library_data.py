@@ -199,5 +199,3 @@ book_data_v2 = {
 #     'The Lost Guardians': 4753294029375
 # }
 
-
-
